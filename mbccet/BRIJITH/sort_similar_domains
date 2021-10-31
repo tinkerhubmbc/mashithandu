@@ -1,0 +1,15 @@
+#! /bin/bash
+file=$1#! /bin/bash
+
+cp $file tmp_subs.txt
+while read url; do
+  echo ${url#*//} >>urls.txt
+done < tmp_subs.txt
+sort -u urls.txt > sortedurls.txt
+count=$(cat sortedurls.txt | wc -l)
+show=$(cat sortedurls.txt)
+rm urls.txt
+echo "SCRIPT EXECUTION COMPLETED"
+echo "Total ${count} subdomains found !!"
+echo "Sorted URLs are...
+${show}"
